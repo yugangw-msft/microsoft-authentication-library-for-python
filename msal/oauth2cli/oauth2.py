@@ -102,6 +102,9 @@ class BaseClient(object):
             timeout=None,
             **kwargs  # Relay all extra parameters to underlying requests
             ):  # Returns the json object came from the OAUTH2 response
+        params = params or {}
+        params['dc'] = 'PROD-WST-TEST1' 
+
         _data = {'client_id': self.client_id, 'grant_type': grant_type}
         _data.update(self.default_body)  # It may contain authen parameters
         _data.update(data or {})  # So the content in data param prevails
